@@ -13,6 +13,7 @@ public enum AppointmentType {
     CONSULTATION,
     GROOMING;
     
+    @Override
     public String toString() {
         switch(this) {
             case CONSULTATION:

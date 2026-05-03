@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package vetappointmentmanager.model;
+import java.time.LocalDate;
 
 /**
  *
@@ -13,19 +14,19 @@ public class Appointment {
     private int id;
     private Client client;
     private Pet pet;
-    private String date;
+    private LocalDate date;
     private AppointmentType type;
     private AppointmentStatus status;
     private String observation;
     
-    public Appointment(int id, Client client, Pet pet, String date, 
-            AppointmentType type, AppointmentStatus status, String observation) {
+    public Appointment(int id, Client client, Pet pet, LocalDate date, 
+            AppointmentType type, String observation) {
         this.id = id;
         this.client = client;
         this.pet = pet;
         this.date = date;
         this.type = type;
-        this.status = status;
+        this.status = AppointmentStatus.PENDING;
         this.observation = observation;
     }
     
@@ -51,10 +52,10 @@ public class Appointment {
         this.pet = pet;
     }
     
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
     
@@ -81,8 +82,8 @@ public class Appointment {
     
     @Override
     public String toString() {
-        return "Cita: " + getId() + "Cliente: " + client.getName()+ "Mascota: " +
-                pet.getName() + " Fecha: " + getDate() + "Servicio: " + getType() + 
-                "Estado: " + getStatus() + "Notas: " + getObservation();
+        return "Cita id: " + getId() + " Cliente: " + client.getName()+ " Mascota: " +
+                pet.getName() + " Fecha: " + getDate() + " Servicio: " + getType() + 
+                " Estado: " + getStatus() + " Notas: " + getObservation();
     }
 }

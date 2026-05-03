@@ -54,7 +54,7 @@ public class Pet {
     //toString
     @Override
     public String toString() {
-        return "Mascota id: " + id + "Nombre Mascota: " + name + " Especie: " + 
+        return "Mascota id: " + id + " Nombre Mascota: " + name + " Especie: " + 
                 species + " edad: " + age;
     }
 }

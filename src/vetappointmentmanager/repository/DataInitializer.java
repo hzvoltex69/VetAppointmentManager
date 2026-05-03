@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class DataInitializer {
     public static Map<String, Client> loadInitialClients() {
-        Map<String, Client> clients = new HashMap();
+        Map<String, Client> clients = new HashMap<>();
         
         Client c1 = new Client ("2239482-9", "Kiko Perez", "942323232");
         c1.addPet(new Pet(-1, "Chavo", "Perro", 3));
