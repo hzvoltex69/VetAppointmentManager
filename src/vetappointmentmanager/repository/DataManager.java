@@ -6,6 +6,7 @@
 package vetappointmentmanager.repository;
 
 import vetappointmentmanager.model.*;
+//import vetappointmentmanager.data.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -64,7 +65,7 @@ public class DataManager {
     //Load Data
     
     public static Map<String, Client> loadClients() {
-        String clientsFile = "data/clients/csv";
+        String clientsFile = "data/clients.csv";
         Map <String, Client> clients = new HashMap<>();
         File file = new File(clientsFile);
         if (!file.exists()) {
@@ -83,11 +84,11 @@ public class DataManager {
                         Pet pet = new Pet(Integer.valueOf(parts[1]), parts[2], 
                                 parts[3], Integer.valueOf(parts[4]));
                         current.addPet(pet);
-                    } else {
+                    } 
+                } else {
                         current = new Client(parts[0], parts[1], parts[2]);
                         clients.put(current.getRut(), current);
                     }
-                }
             } 
             System.out.println("Clientes cargados!");
         } catch (IOException e) {
