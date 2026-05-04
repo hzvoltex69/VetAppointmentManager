@@ -6,7 +6,6 @@
 package vetappointmentmanager.repository;
 
 import vetappointmentmanager.model.*;
-//import vetappointmentmanager.data.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -21,6 +20,8 @@ public class DataManager {
     
     public static void saveClients(Map<String, Client> clients) {
         String clientsFile = "data/clients.csv";
+        
+        //File folder = new File("data");
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(new FileWriter(clientsFile));
@@ -95,12 +96,7 @@ public class DataManager {
             System.out.println("Error al cargar clientes: " + e.getMessage());
         } finally {
             if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    System.out.println("Error: " + e.getMessage()); 
-                   
-                }
+                closeReader(br);
             }
         }
         return clients;
@@ -143,15 +139,19 @@ public class DataManager {
         } catch (IOException e) {
             System.out.println("Error al cargar citas: " + e.getMessage());
         } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    System.out.println("Error: " + e.getMessage()); 
-                   
-                }
-            }
+            closeReader(br);
         }
         return appointments;
+    }
+    
+    public static void closeReader(BufferedReader br) {
+        if (br != null) {
+            try {
+                br.close();
+            } catch (IOException e) {
+                System.out.println("Error: " + e.getMessage()); 
+                   
+            }
+        }
     }
 }
