@@ -28,6 +28,7 @@ This project is ideal for learning object-oriented programming and basic system 
 
 ## Project Structure
 
+```
 VetAppointmentManager/
 │
 ├── src/vetappointmentmanager/
@@ -74,7 +75,7 @@ VetAppointmentManager/
 │
 ├── data/ # CSV data storage
 ....
-
+```
 ## Requirements
 
 - Java 8 or higher
