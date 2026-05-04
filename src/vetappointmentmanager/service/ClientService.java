@@ -92,7 +92,7 @@ public class ClientService {
         System.out.println("Mascota agregada !");
     }
     
-    public void listpets(String rut) throws PetNotFoundException {
+    public void listPets(String rut) throws PetNotFoundException {
         Client client = clients.get(rut);
         if (client == null) {
             throw new PetNotFoundException("Cliente: " + rut + " no existe");

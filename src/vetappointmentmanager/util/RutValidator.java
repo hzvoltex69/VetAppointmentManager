@@ -9,6 +9,12 @@ package vetappointmentmanager.util;
  *
  * @author hzvol
  */
+import vetappointmentmanager.exception.InvalidRutException;
+
 public class RutValidator {
-    
+    public static void validate(String rut) throws InvalidRutException {
+        if (!rut.matches("\\d{7,8}-\\d")) {
+            throw new InvalidRutException("ERROR !! Formato valido: 12345678-9");
+        }
+    }
 }

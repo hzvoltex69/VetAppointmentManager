@@ -9,6 +9,27 @@ package vetappointmentmanager.ui.console;
  *
  * @author hzvol
  */
-public class MenuBase {
+
+import java.util.Scanner;
+
+public abstract class MenuBase {
+    protected Scanner scanner;
     
+    public MenuBase() {
+        this.scanner = new Scanner(System.in);
+    }
+    
+    public abstract void start();
+    
+    protected abstract void startOptions();
+    
+    protected int readOptions() {
+        int op = -1;
+        try {
+            op = Integer.valueOf(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Opcion ingresada no valida. Intente nuevamente");
+        }
+        return op;
+    }
 }
