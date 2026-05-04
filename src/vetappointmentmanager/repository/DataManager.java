@@ -21,7 +21,7 @@ public class DataManager {
     public static void saveClients(Map<String, Client> clients) {
         String clientsFile = "data/clients.csv";
         
-        //File folder = new File("data");
+        creataeDataFolder();
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(new FileWriter(clientsFile));
@@ -44,6 +44,7 @@ public class DataManager {
 
     public static void saveAppointments(List<Appointment> appointments) {
         String appointmentsFile = "data/appointments.csv";
+        creataeDataFolder();
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(new FileWriter(appointmentsFile));
@@ -152,6 +153,13 @@ public class DataManager {
                 System.out.println("Error: " + e.getMessage()); 
                    
             }
+        }
+    }
+    
+    public static void creataeDataFolder() {
+        File folder = new File("data");
+        if (!folder.exists()) {
+            folder.mkdir();
         }
     }
 }
