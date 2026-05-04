@@ -57,14 +57,13 @@ public class ClientService {
     }
     
     public void editClient(String rut, String name, String phone) 
-                throws InvalidRutException, InvalidPhoneException {
+                throws InvalidPhoneException {
         Client client = clients.get(rut);
         if (client == null) {
             System.out.println("Cliente no existe");
             return;
         }
         PhoneValidator.validate(phone);
-        RutValidator.validate(rut);
         client.setName(name);
         client.setPhone(phone);
         client.setRut(rut);
