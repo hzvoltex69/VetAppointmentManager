@@ -121,7 +121,10 @@ public class MenuAppointments extends MenuBase {
         try {
             System.out.print("Ingrese ID de la cita a editar: ");
             int id = Integer.valueOf(scanner.nextLine());
-
+            Appointment appointment = appointmentService.searchAppointment(id);
+            if (appointment == null) {
+                return;
+            }
             System.out.print("Ingrese nueva fecha (YYYY-MM-DD): ");
             LocalDate date = LocalDate.parse(scanner.nextLine());
 
@@ -155,6 +158,10 @@ public class MenuAppointments extends MenuBase {
         try {
             System.out.print("Ingrese ID de la cita a eliminar: ");
             int id = Integer.valueOf(scanner.nextLine());
+            Appointment appointment = appointmentService.searchAppointment(id);
+            if (appointment == null) {
+                return;
+            }
             appointmentService.deleteAppointment(id);
         } catch (InvalidAppointmentException e) {
             System.out.println("Error: " + e.getMessage());

@@ -158,9 +158,12 @@ public class AppointmentWindow extends WindowBase {
     private void editAppointment() {
         try {
             String idStr = askInput("Ingrese ID de la cita a editar:");
-            if (idStr == null) return;
             int id = Integer.parseInt(idStr);
-
+            Appointment appointment = appointmentService.searchAppointment(id);
+            if (idStr == null || appointment == null) {
+                showMessage("Cita no existe!");
+                return;
+            }
             String dateStr = askInput("Ingresa nueva fecha (YYYY-MM-DD):");
             if (dateStr == null) return;
             LocalDate date = LocalDate.parse(dateStr);
@@ -195,8 +198,12 @@ public class AppointmentWindow extends WindowBase {
         try {
             if (!askConfirm("Eliminar cita?")) return;
             String idStr = askInput("Ingrese ID de la cita a eliminar:");
-            if (idStr == null) return;
             int id = Integer.parseInt(idStr);
+            Appointment appointment = appointmentService.searchAppointment(id);
+            if (idStr == null || appointment == null) {
+                showMessage("Cita no existe!");
+                return;
+            }
             appointmentService.deleteAppointment(id);
             showMessage("Cita eliminada correctamente!");
         } catch (InvalidAppointmentException e) {
