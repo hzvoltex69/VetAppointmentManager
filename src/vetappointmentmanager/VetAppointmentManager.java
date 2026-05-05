@@ -14,6 +14,7 @@ import vetappointmentmanager.model.*;
 import vetappointmentmanager.repository.*;
 import vetappointmentmanager.service.*;
 import vetappointmentmanager.ui.console.*;
+import vetappointmentmanager.ui.gui.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -46,7 +47,7 @@ public class VetAppointmentManager {
         if (op == 1) {
             new MenuPrincipal(clients, appointments).start();
         } else if (op == 2) {
-            System.out.println("try later");
+             new MainWindow(clients, appointments).setVisible(true);
         } else {
             System.out.println("Iniciando consola por defecto.");
             new MenuPrincipal(clients, appointments).start();

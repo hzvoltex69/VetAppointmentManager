@@ -16,9 +16,7 @@ import vetappointmentmanager.service.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class ClientWindow {
-    public class ClientWindow extends WindowBase {
-
+public class ClientWindow extends WindowBase{
     private ClientService clientService;
 
     public ClientWindow(ClientService clientService) {
@@ -160,5 +158,4 @@ public class ClientWindow {
             new PetWindow(clientService, client).setVisible(true);
         }
     }
-        }
 }
