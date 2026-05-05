@@ -84,43 +84,46 @@ public class MenuClients extends MenuBase {
 
     private void editClient() {
         try {
-            System.out.print("Ingrese RUT del cliente a editar: ");
-            String rut = scanner.nextLine();
-            Client client = clientService.searchClient(rut);
-            if (client == null) {
-                return;
-            }
+            Client client = getClient();
+            if (client == null) return;
             System.out.print("Ingrese nuevo nombre: ");
             String name = scanner.nextLine();
             System.out.print("Ingrese nuevo numero de celular: ");
             String phone = scanner.nextLine();
-            clientService.editClient(rut, name, phone);
+            clientService.editClient(client.getRut(), name, phone);
         } catch (InvalidPhoneException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
 
     private void deleteClient() {
-        System.out.print("Ingrese RUT del cliente a eliminar: ");
-        String rut = scanner.nextLine();
-        clientService.deleteClient(rut);
+        Client client = getClient();
+        if (client == null) return;
+        clientService.deleteClient(client.getRut());
     }
 
     private void searchClient() {
-        System.out.print("Ingrese RUT del cliente a buscar: ");
-        String rut = scanner.nextLine();
-        Client client = clientService.searchClient(rut);
+        Client client = getClient();
         if (client != null) {
-            System.out.println(client.toString());
+            System.out.println(client);
         }
     }
 
     private void managePets() {
-        System.out.print("Ingresa RUT del cliente: ");
-        String rut = scanner.nextLine();
-        Client client = clientService.searchClient(rut);
+        Client client = getClient();
         if (client != null) {
             new MenuPets(clientService, client).start();
         }
+    }
+    
+    public Client getClient() {
+        System.out.println("Ingrese Rut del Cliente");
+        String rut = scanner.nextLine();
+        Client client = clientService.searchClient(rut);
+        if (rut == null || client == null) {
+            System.out.println("CLiente no existe!");
+            return null;
+        }
+        return client;
     }
 }

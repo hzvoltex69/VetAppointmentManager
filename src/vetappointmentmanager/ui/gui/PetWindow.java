@@ -104,7 +104,8 @@ public class PetWindow extends WindowBase {
         }
         String result = "";
         for (Pet p : client.getPets()) {
-            result += p.toString() + "\n---------------------------\n";
+            result += p.toString() + "\n----------------------------------------"
+                    + "--------------------------------------------------------------------\n";;
         }
         JTextArea textArea = new JTextArea(result);
         textArea.setEditable(false);

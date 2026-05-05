@@ -122,11 +122,8 @@ public class ClientWindow extends WindowBase{
     private void editClient() {
         try {
             String rut = askInput("Ingrese RUT del cliente a editar:");
-            Client client = clientService.searchClient(rut);
-            if (client == null) {
-                showMessage("CLiente no existe!");
-                return;
-            }
+            Client client = getClient(rut);
+            if (client == null) return;
             String name = askInput("Ingrese nuevo nombre:");
             if (name == null) return;
             String phone = askInput("Ingrese nuevo telefono:");
@@ -141,15 +138,15 @@ public class ClientWindow extends WindowBase{
     private void deleteClient() {
         if (!askConfirm("Eliminar cliente?")) return;
         String rut = askInput("Ingrese RUT del cliente a eliminar:");
-        if (rut == null) return;
+        Client client = getClient(rut);
+        if (client == null) return;
         clientService.deleteClient(rut);
         showMessage("Cliente eliminado correctamente!");
     }
 
     private void searchClient() {
         String rut = askInput("Ingrese RUT del cliente a buscar:");
-        if (rut == null) return;
-        Client client = clientService.searchClient(rut);
+        Client client = getClient(rut);
         if (client != null) {
             showMessage(client.toString());
         }
@@ -157,10 +154,18 @@ public class ClientWindow extends WindowBase{
 
     private void managePets() {
         String rut = askInput("Ingrese RUT del cliente:");
-        if (rut == null) return;
-        Client client = clientService.searchClient(rut);
+        Client client = getClient(rut);
         if (client != null) {
             new PetWindow(clientService, client).setVisible(true);
         }
+    }
+    
+    public Client getClient(String rut) {
+        Client client = clientService.searchClient(rut);
+        if (rut == null || client == null) {
+            showMessage("CLiente no existe!");
+            return null;
+        }
+        return client;
     }
 }
