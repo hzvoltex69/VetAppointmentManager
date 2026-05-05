@@ -109,7 +109,8 @@ public class ClientWindow extends WindowBase{
         }
         String result = "";
         for (Client c : clientService.getClients().values()) {
-            result += c.toString() + "\n---------------------------\n";
+            result += c + "\n----------------------------------------"
+                    + "--------------------------------------------------------------------\n";
         }
         JTextArea textArea = new JTextArea(result);
         textArea.setEditable(false);
