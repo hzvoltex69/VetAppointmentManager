@@ -86,12 +86,16 @@ public class MenuClients extends MenuBase {
         try {
             System.out.print("Ingrese RUT del cliente a editar: ");
             String rut = scanner.nextLine();
+            Client client = clientService.searchClient(rut);
+            if (client == null) {
+                return;
+            }
             System.out.print("Ingrese nuevo nombre: ");
             String name = scanner.nextLine();
             System.out.print("Ingrese nuevo numero de celular: ");
             String phone = scanner.nextLine();
             clientService.editClient(rut, name, phone);
-        } catch (InvalidRutException | InvalidPhoneException e) {
+        } catch (InvalidPhoneException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }

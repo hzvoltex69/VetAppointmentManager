@@ -121,7 +121,11 @@ public class ClientWindow extends WindowBase{
     private void editClient() {
         try {
             String rut = askInput("Ingrese RUT del cliente a editar:");
-            if (rut == null);
+            Client client = clientService.searchClient(rut);
+            if (client == null) {
+                showMessage("CLiente no existe!");
+                return;
+            }
             String name = askInput("Ingrese nuevo nombre:");
             if (name == null) return;
             String phone = askInput("Ingrese nuevo telefono:");

@@ -60,7 +60,6 @@ public class ClientService {
                 throws InvalidPhoneException {
         Client client = clients.get(rut);
         if (client == null) {
-            System.out.println("Cliente no existe");
             return;
         }
         PhoneValidator.validate(phone);
