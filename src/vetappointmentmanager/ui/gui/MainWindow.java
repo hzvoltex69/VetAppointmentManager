@@ -23,6 +23,8 @@ public class MainWindow extends WindowBase {
     private List<Appointment> appointments;
     private ClientService clientService;
     private AppointmentService appointmentService;
+    private ClientWindow clientWindow;
+    private AppointmentWindow appointmentWindow;
 
     public MainWindow(Map<String, Client> clients, List<Appointment> appointments) {
         super("VetAppointment Manager");
@@ -42,13 +44,21 @@ public class MainWindow extends WindowBase {
 
         btnClients.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ClientWindow(clientService).setVisible(true);
+                if (clientWindow == null) {
+                    clientWindow = new ClientWindow(clientService);
+                }
+            clientWindow.setVisible(true);
+            clientWindow.toFront();
             }
         });
 
         btnAppointments.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new AppointmentWindow(appointmentService, clientService).setVisible(true);
+                if (appointmentWindow == null) {
+                    appointmentWindow = new AppointmentWindow(appointmentService, clientService);
+                }
+            appointmentWindow.setVisible(true);
+            appointmentWindow.toFront();
             }
         });
 
